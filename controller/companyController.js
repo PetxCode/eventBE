@@ -80,6 +80,7 @@ const createCompany = async (req, res) => {
     await companySchema.create({
       name,
       vision,
+      status: admin,
       email,
       password: hashData,
       verifiedToken: token,
