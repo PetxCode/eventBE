@@ -13,6 +13,8 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/api/company", require("./router/companyRuter"));
+
 app.listen(port, () => {
   console.log("");
   console.log("Let's do this...!");
