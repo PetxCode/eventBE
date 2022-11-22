@@ -2,6 +2,7 @@ const companySchema = require("../model/company");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+const cloudinary = require("../util/cluodinary");
 
 const getCompany = async (req, res) => {
   try {
@@ -73,12 +74,15 @@ const createCompany = async (req, res) => {
     const saltData = await bcrypt.genSalt(10);
     const hashData = await bcrypt.hash(password, saltData);
 
+    const image = await cloudinary.uploader.upload(req.file.path);
+
     const genNumb = crypto.randomBytes(10).toString("hex");
 
     const token = await jwt.sign(genNumb, "This_istheBest");
 
     await companySchema.create({
       name,
+      logo: image.secure_url,
       vision,
       status: admin,
       email,
@@ -106,7 +110,7 @@ const verifiedCompany = async (req, res) => {
           req.params.id,
           {
             verifiedToken: "",
-            verifiied: true,
+            verified: true,
             companyToken: genNumb,
           },
           { new: true }
