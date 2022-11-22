@@ -24,6 +24,14 @@ const companySchema = mongoose.Schema(
       type: String,
     },
 
+    verifiedToken: {
+      type: String,
+    },
+
+    verified: {
+      type: Boolean,
+    },
+
     staff: [
       {
         type: mongoose.Types.ObjectId(),
