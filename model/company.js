@@ -28,6 +28,10 @@ const companySchema = mongoose.Schema(
       type: String,
     },
 
+    logo: {
+      type: String,
+    },
+
     verifiedToken: {
       type: String,
     },
