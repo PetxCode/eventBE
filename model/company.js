@@ -34,14 +34,14 @@ const companySchema = mongoose.Schema(
 
     staff: [
       {
-        type: mongoose.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         ref: "staffs",
       },
     ],
 
     hub: [
       {
-        type: mongoose.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         ref: "hubs",
       },
     ],
@@ -49,4 +49,4 @@ const companySchema = mongoose.Schema(
   { timestamps: true }
 );
 
-exports.module = mongoose.model("companies", companySchema);
+module.exports = mongoose.model("companies", companySchema);

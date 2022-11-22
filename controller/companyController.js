@@ -1,11 +1,9 @@
-import { info } from "console";
-
 const companySchema = require("../model/company");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const bcrypt = require("bcconst bcrypt");
+const bcrypt = require("bcrypt");
 
-export const getCompany = async (req, res) => {
+const getCompany = async (req, res) => {
   try {
     const company = await companySchema.find();
     return res.status(200).json({
@@ -19,7 +17,7 @@ export const getCompany = async (req, res) => {
   }
 };
 
-export const getSingleCompany = async (req, res) => {
+const getSingleCompany = async (req, res) => {
   try {
     const company = await companySchema.findById(req.params.id);
     return res.status(200).json({
@@ -33,7 +31,7 @@ export const getSingleCompany = async (req, res) => {
   }
 };
 
-export const removeCompany = async (req, res) => {
+const removeCompany = async (req, res) => {
   try {
     const company = await companySchema.findByIdAndDelete(req.params.id);
     return res.status(200).json({
@@ -47,7 +45,7 @@ export const removeCompany = async (req, res) => {
   }
 };
 
-export const updateCompany = async (req, res) => {
+const updateCompany = async (req, res) => {
   try {
     const { vision } = req.body;
     const company = await companySchema.findByIdAndUpdate(
@@ -68,7 +66,7 @@ export const updateCompany = async (req, res) => {
   }
 };
 
-export const createCompany = async (req, res) => {
+const createCompany = async (req, res) => {
   try {
     const { name, vision, email, password } = req.body;
 
@@ -86,6 +84,10 @@ export const createCompany = async (req, res) => {
       password: hashData,
       verifiedToken: token,
     });
+
+    return res.status(201).json({
+      message: "Account created",
+    });
   } catch (err) {
     return res.status(404).json({
       message: err,
@@ -93,7 +95,7 @@ export const createCompany = async (req, res) => {
   }
 };
 
-export const verifiedCompany = async (req, res) => {
+const verifiedCompany = async (req, res) => {
   try {
     const company = await companySchema.findById(req.params.id);
     const genNumb = crypto.randomBytes(2).toString("hex");
@@ -104,7 +106,7 @@ export const verifiedCompany = async (req, res) => {
           {
             verifiedToken: "",
             verifiied: true,
-            token: genNumb,
+            companyToken: genNumb,
           },
           { new: true }
         );
@@ -121,9 +123,9 @@ export const verifiedCompany = async (req, res) => {
   }
 };
 
-export const signinCompany = async (req, res) => {
+const signinCompany = async (req, res) => {
   try {
-    const { vision, email, password, name } = req.body;
+    const { password, name } = req.body;
 
     const user = await companySchema.findOne({ name });
 
@@ -138,11 +140,12 @@ export const signinCompany = async (req, res) => {
               _id: user._id,
               ...info,
             },
-            { secret: "We_are_the_one" }
+            "this is the Word"
           );
 
           return res.status(200).json({
             message: `welcome back ${user.name}`,
+            data: token,
           });
         } else {
           return res.status(404).json({
@@ -164,4 +167,14 @@ export const signinCompany = async (req, res) => {
       message: err,
     });
   }
+};
+
+module.exports = {
+  getCompany,
+  getSingleCompany,
+  removeCompany,
+  updateCompany,
+  createCompany,
+  verifiedCompany,
+  signinCompany,
 };
