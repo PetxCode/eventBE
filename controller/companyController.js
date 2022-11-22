@@ -110,7 +110,7 @@ const verifiedCompany = async (req, res) => {
           req.params.id,
           {
             verifiedToken: "",
-            verifiied: true,
+            verified: true,
             companyToken: genNumb,
           },
           { new: true }

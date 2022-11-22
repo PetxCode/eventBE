@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const staffSchema = mongoose.Schema(
   {
-    name: {
+    companyName: {
+      type: String,
+    },
+
+    userName: {
       type: String,
     },
 
@@ -14,8 +18,12 @@ const staffSchema = mongoose.Schema(
       type: String,
     },
 
-    tokenCheck: {
+    verifiedToken: {
       type: String,
+    },
+
+    verified: {
+      type: Boolean,
     },
 
     email: {
@@ -23,6 +31,10 @@ const staffSchema = mongoose.Schema(
     },
 
     password: {
+      type: String,
+    },
+
+    userImage: {
       type: String,
     },
 
@@ -39,4 +51,4 @@ const staffSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-exports.module = mongoose.model("staffs", staffSchema);
+module.exports = mongoose.model("staffs", staffSchema);
