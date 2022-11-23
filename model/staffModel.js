@@ -48,7 +48,7 @@ const staffSchema = mongoose.Schema(
       ref: "hubs",
     },
 
-    recordHistory: [
+    history: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "reportHistories",
