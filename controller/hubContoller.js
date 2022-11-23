@@ -24,12 +24,37 @@ const getHubs = async (req, res) => {
 
 const getHubInfo = async (req, res) => {
   try {
-    const staff = await hubModel.findById(req.params.id);
+    const hub = await hubModel.findById(req.params.id);
 
     return res.status(200).json({
-      message: `this is ${staff.userName} profile`,
-      data: staff,
+      message: `this is ${hub.name} profile`,
+      data: hub,
     });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
+const resetHubToken = async (req, res) => {
+  try {
+    const company = await companyModel.findById(req.params.id);
+    if (company) {
+      const newToken = crypto.randomBytes(2).toString("hex");
+      const hub = await hubModel.findByIdAndUpdate(
+        req.params.hubID,
+        {
+          hubToken: newToken,
+        },
+        { new: true }
+      );
+
+      return res.status(200).json({
+        message: `token to asset Hub has been changed`,
+        data: hub,
+      });
+    }
   } catch (err) {
     return res.status(404).json({
       message: err.message,
@@ -88,4 +113,5 @@ module.exports = {
   deleteHub,
   getHubInfo,
   getHubs,
+  resetHubToken,
 };
