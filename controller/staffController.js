@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const cloudinary = require("../util/cluodinary");
-const { info } = require("console");
-const { getCompany } = require("./companyController");
 const mongoose = require("mongoose");
 
 const getStaffs = async (req, res) => {
@@ -64,7 +62,6 @@ const createStaff = async (req, res) => {
           userImage: image.secure_url,
           status: "staff",
         });
-        console.log(company);
         company.staff.push(mongoose.Types.ObjectId(user._id));
         company.save();
 

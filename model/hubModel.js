@@ -8,18 +8,20 @@ const hubSchema = mongoose.Schema(
     hubToken: {
       type: String,
     },
-    email: {
-      type: String,
-    },
-    password: {
-      type: String,
-    },
+
+    salesRecord: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "salesRecords",
+      },
+    ],
+
     company: {
-      type: mongoose.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: "companies",
     },
   },
   { timestamps: true }
 );
 
-exports.module = mongoose.model("hubs", hubSchema);
+module.exports = mongoose.model("hubs", hubSchema);
