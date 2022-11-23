@@ -1,5 +1,8 @@
 const companyModel = require("../model/company");
 const hubModel = require("../model/hubModel");
+const staffModel = require("../model/staffModel");
+const crypto = require("crypto");
+const mongoose = require("mongoose");
 
 const getHubs = async (req, res) => {
   try {
@@ -41,7 +44,7 @@ const createHub = async (req, res) => {
     const company = await companyModel.findById(req.params.id);
     const getToken = crypto.randomBytes(2).toString("hex");
 
-    const hub = await staffModel.create({
+    const hub = await hubModel.create({
       name,
       hubToken: getToken,
     });
