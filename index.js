@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 app.use("/api/company", require("./router/companyRuter"));
 app.use("/api/staff", require("./router/staffRouter"));
 app.use("/api/hub", require("./router/hubRouter"));
+app.use("/api/sales", require("./router/salesRecordRoute"));
 
 app.listen(port, () => {
   console.log("");

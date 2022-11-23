@@ -47,6 +47,7 @@ const createHub = async (req, res) => {
     const hub = await hubModel.create({
       name,
       hubToken: getToken,
+      company,
     });
     company.hub.push(mongoose.Types.ObjectId(hub._id));
     company.save();
@@ -68,7 +69,7 @@ const deleteHub = async (req, res) => {
 
     const hub = await hubModel.findByIdAndDelete(req.params.hubID);
 
-    company.staff.pull(mongoose.Types.ObjectId(hub._id));
+    company.hub.pull(mongoose.Types.ObjectId(hub._id));
     company.save();
 
     return res.json({

@@ -13,6 +13,11 @@ const salesRecordSchema = mongoose.Schema(
       type: Number,
     },
 
+    submittedBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "staffs",
+    },
+
     profit: {
       type: Number,
     },
@@ -23,11 +28,11 @@ const salesRecordSchema = mongoose.Schema(
     },
 
     company: {
-      type: mongoose.Types.ObjectId(),
+      type: mongoose.Types.ObjectId,
       ref: "companies",
     },
   },
   { timestamps: true }
 );
 
-exports.module = mongoose.model("salesRecords", salesRecordSchema);
+module.exports = mongoose.model("salesRecords", salesRecordSchema);
