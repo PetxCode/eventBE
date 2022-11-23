@@ -2,6 +2,8 @@ const companyModel = require("../model/company");
 const hubModel = require("../model/hubModel");
 const staffModel = require("../model/staffModel");
 const salesRecordModel = require("../model/saleRecordModel");
+const reportHistoryModel = require("../model/reportHistoryModel");
+
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 const moment = require("moment");
@@ -49,9 +51,21 @@ const createSalesRecord = async (req, res) => {
 
     const companyIdentity = hub.company;
     const company = await companyModel.findById(companyIdentity);
-    console.log(user);
 
     const dater = Date.now();
+    console.log(user.userName, company.name);
+
+    await reportHistoryModel.create({
+      totalExpense,
+      totalSales,
+      profit: totalSales - totalExpense,
+      date: `${moment(dater).format("dddd")}, ${moment(dater).format(
+        "MMMM Do YYYY, h:mm:ss"
+      )}`,
+
+      submittedBy: user.userName,
+      company: company.name,
+    });
 
     const sales = await salesRecordModel.create({
       totalExpense,
@@ -64,8 +78,12 @@ const createSalesRecord = async (req, res) => {
       submittedBy: user.userName,
       company: company.name,
     });
+
     hub.salesRecord.push(mongoose.Types.ObjectId(sales._id));
     hub.save();
+
+    user.history.push(mongoose.Types.ObjectId(sales._id));
+    user.save();
 
     return res.json({
       message: `sales Record has been created`,

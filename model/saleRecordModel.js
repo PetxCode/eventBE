@@ -14,8 +14,7 @@ const salesRecordSchema = mongoose.Schema(
     },
 
     submittedBy: {
-      type: mongoose.Types.ObjectId,
-      ref: "staffs",
+      type: String,
     },
 
     profit: {
@@ -28,8 +27,7 @@ const salesRecordSchema = mongoose.Schema(
     },
 
     company: {
-      type: mongoose.Types.ObjectId,
-      ref: "companies",
+      type: String,
     },
   },
   { timestamps: true }

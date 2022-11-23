@@ -1,0 +1,33 @@
+for Hub
+
+localhost:2233/api/hub/:id/create
+localhost:2233/api/hub/:id needs a token
+localhost:2233/api/hub/:id/hubs
+localhost:2233/api/hub/:id/:hubID
+localhost:2233/api/hub/:id/:hubID/reset
+
+for company
+
+localhost:2233/api/company 
+localhost:2233/api/company/:id 
+localhost:2233/api/company/:id  
+localhost:2233/api/company/:id 
+localhost:2233/api/company/create needs image, companyName, email and password
+localhost:2233/api/company/:id/verify
+localhost:2233/api/company/signin needs email and password
+
+for staff
+
+localhost:2233/api/staff/create needs companyName, companyToken, email, password and Image
+localhost:2233/api/staff/:id
+localhost:2233/api/staff/:id/company
+localhost:2233/api/staff/signin needs email and password
+localhost:2233/api/staff/:id/verify
+localhost:2233/api/staff/:id/:staffID
+
+for saleReport
+
+localhost:2233/api/sales/:id/:staffID/create
+localhost:2233/api/sales/:id/:salesID
+localhost:2233/api/sales/:id/sales
+localhost:2233/api/sales/:id/:salesID

@@ -25,6 +25,24 @@ const getStaffs = async (req, res) => {
   }
 };
 
+const getStaffHistory = async (req, res) => {
+  try {
+    const staffs = await staffModel.findById(req.params.id).populate({
+      path: "history",
+      options: { sort: { createdAt: -1 } },
+    });
+
+    return res.status(200).json({
+      message: `These are your staffs' sales history`,
+      data: staffs,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 const getStaffInfo = async (req, res) => {
   try {
     const staff = await staffModel.findById(req.params.id);
@@ -50,7 +68,7 @@ const createStaff = async (req, res) => {
     const genNumb = crypto.randomBytes(10).toString("hex");
     const userToken = jwt.sign(genNumb, "This_istheBest");
 
-    const company = await companySchema.findOne({ name });
+    const company = await companyModel.findOne({ name });
     if (company) {
       if (company.companyToken === token) {
         const user = await staffModel.create({
@@ -107,8 +125,8 @@ const verifiedStaff = async (req, res) => {
     const user = await staffModel.findById(req.params.id);
     const codedNumb = crypto.randomBytes(2).toString("hex");
     if (user) {
-      if (user.verifiedToken === "") {
-        await staffModel.findByIdAndUpdate(
+      if (user.verifiedToken !== "") {
+        const userData = await staffModel.findByIdAndUpdate(
           user._id,
           {
             verifiedToken: "",
@@ -119,15 +137,19 @@ const verifiedStaff = async (req, res) => {
         );
 
         return res.status(200).json({
-          message: "success: Account has been verified...!",
+          message: `Staff is now verified`,
+          data: userData,
+        });
+      } else {
+        return res.status(404).json({
+          message: `Error`,
         });
       }
+    } else {
+      return res.json({
+        message: `Error getting User`,
+      });
     }
-
-    return res.json({
-      message: `Staff is now verified`,
-      data: user,
-    });
   } catch (err) {
     return res.status(404).json({
       message: err.message,
@@ -191,4 +213,5 @@ module.exports = {
   deleteStaff,
   verifiedStaff,
   staffSignin,
+  getStaffHistory,
 };
