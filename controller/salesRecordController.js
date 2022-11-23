@@ -12,7 +12,6 @@ const getSalesRecords = async (req, res) => {
       path: "salesRecord",
       options: { sort: { createdAt: -1 } },
     });
-
     return res.status(200).json({
       message: `These are your hubs' salesRecord profile`,
       data: hub,
@@ -49,9 +48,9 @@ const createSalesRecord = async (req, res) => {
 
     const companyIdentity = hub.company;
     const company = await companyModel.findById(companyIdentity);
-    console.log(user);
 
     const dater = Date.now();
+    console.log(user.userName, company.name);
 
     const sales = await salesRecordModel.create({
       totalExpense,
@@ -66,6 +65,9 @@ const createSalesRecord = async (req, res) => {
     });
     hub.salesRecord.push(mongoose.Types.ObjectId(sales._id));
     hub.save();
+
+    user.recordHistory.push(mongoose.Types.ObjectId(sales._id));
+    user.save();
 
     return res.json({
       message: `sales Record has been created`,

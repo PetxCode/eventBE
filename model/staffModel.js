@@ -47,6 +47,13 @@ const staffSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "hubs",
     },
+
+    recordHistory: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "reportHistories",
+      },
+    ],
   },
   { timestamps: true }
 );
