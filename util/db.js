@@ -4,7 +4,7 @@ const newURL = process.env.DB;
 
 const url = "mongodb://localhost/eventDB";
 
-mongoose.connect(url, () => {
+mongoose.connect(newURL, () => {
   console.log("database is now connected...!");
 });
 
