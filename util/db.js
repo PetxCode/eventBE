@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+require("dotenv").config();
+
 const newURL = process.env.DB;
 
 const url = "mongodb://localhost/eventDB";
