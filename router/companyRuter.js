@@ -8,7 +8,7 @@ const {
   verifiedCompany,
   signinCompany,
 } = require("../controller/companyController");
-const upload = require("../util/multer");
+const { upload } = require("../util/multer");
 const router = express.Router();
 
 router.route("/").get(getCompany);

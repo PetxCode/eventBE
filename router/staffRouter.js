@@ -8,10 +8,10 @@ const {
   staffSignin,
   getStaffHistory,
 } = require("../controller/staffController");
-const upload = require("../util/multer");
+const { uploader } = require("../util/multer");
 const router = express.Router();
 
-router.route("/create").post(upload, createStaff);
+router.route("/create").post(uploader, createStaff);
 
 router.route("/:id").get(getStaffInfo);
 router.route("/:id/gethistory").get(getStaffHistory);

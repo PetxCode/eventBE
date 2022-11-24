@@ -1,5 +1,6 @@
 const companySchema = require("../model/company");
 const jwt = require("jsonwebtoken");
+const streamifier = require("streamifier");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const cloudinary = require("../util/cluodinary");
@@ -74,7 +75,20 @@ const createCompany = async (req, res) => {
     const saltData = await bcrypt.genSalt(10);
     const hashData = await bcrypt.hash(password, saltData);
 
-    const image = await cloudinary.uploader.upload(req.file.path);
+    let streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream((error, result) => {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        });
+
+        streamifier.createReadStream(req?.file.buffer).pipe(stream);
+      });
+    };
+    const image = await streamUpload(req);
 
     const genNumb = crypto.randomBytes(10).toString("hex");
 

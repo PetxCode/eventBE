@@ -1,6 +1,7 @@
 const companyModel = require("../model/company");
 const staffModel = require("../model/staffModel");
 
+const streamifier = require("streamifier");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
@@ -64,9 +65,24 @@ const createStaff = async (req, res) => {
 
     const saltData = await bcrypt.genSalt(10);
     const hashData = await bcrypt.hash(password, saltData);
-    const image = await cloudinary.uploader.upload(req.file.path);
+    // const image = await cloudinary.uploader.upload(req.file.path);
     const genNumb = crypto.randomBytes(10).toString("hex");
     const userToken = jwt.sign(genNumb, "This_istheBest");
+
+    let streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream((error, result) => {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        });
+
+        streamifier.createReadStream(req?.file.buffer).pipe(stream);
+      });
+    };
+    const image = await streamUpload(req);
 
     const company = await companyModel.findOne({ name });
     if (company) {
@@ -80,6 +96,7 @@ const createStaff = async (req, res) => {
           userImage: image.secure_url,
           status: "staff",
         });
+
         company.staff.push(mongoose.Types.ObjectId(user._id));
         company.save();
 
@@ -206,6 +223,33 @@ const staffSignin = async (req, res) => {
   }
 };
 
+const staffTrial = async (req, res) => {
+  try {
+    let streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream((error, result) => {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        });
+
+        streamifier.createReadStream(req?.file.buffer).pipe(stream);
+      });
+    };
+
+    const upload = async (req) => {
+      const result = await streamUpload(req);
+      res.json({ message: "uploaded", data: result?.secure_url });
+    };
+
+    upload(req);
+  } catch (err) {
+    return res.status(404).json({ message: err.message });
+  }
+};
+
 module.exports = {
   createStaff,
   getStaffs,
@@ -214,4 +258,5 @@ module.exports = {
   verifiedStaff,
   staffSignin,
   getStaffHistory,
+  staffTrial,
 };
