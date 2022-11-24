@@ -293,7 +293,7 @@ const resetPassword = async (req, res) => {
         const token = crypto.randomBytes(5).toString("hex");
         const myToken = jwt.sign({ token }, "ThisIsAVoteApp");
 
-        await userModel.findByIdAndUpdate(
+        const newUser = await staffModel.findByIdAndUpdate(
           user._id,
           {
             verifiedToken: myToken,
@@ -301,7 +301,7 @@ const resetPassword = async (req, res) => {
           { new: true }
         );
 
-        resetMyPassword(user, company);
+        resetMyPassword(newUser, company);
 
         return res.status(200).json({
           message: "Please check your email to continue",
@@ -315,7 +315,9 @@ const resetPassword = async (req, res) => {
       return res.status(404).json({ message: "user can't be found" });
     }
   } catch (error) {
-    return res.status(404).json({ message: "An Error Occur " });
+    return res
+      .status(404)
+      .json({ message: `An Error Occur: ${error.message}` });
   }
 };
 
@@ -324,7 +326,7 @@ const changePassword = async (req, res) => {
     const { password } = req.body;
     const user = await staffModel.findById(req.params.id);
     if (user) {
-      if (user.verified && user.token === req.params.token) {
+      if (user.verified && user.verifiedToken === req.params.token) {
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(password, salt);
 
