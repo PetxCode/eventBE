@@ -7,8 +7,11 @@ const {
   createCompany,
   verifiedCompany,
   signinCompany,
+
+  resetPassword,
+  changePassword,
 } = require("../controller/companyController");
-const { uploader, upload } = require("../util/multer");
+const { uploader } = require("../util/multer");
 const router = express.Router();
 
 router.route("/").get(getCompany);
@@ -20,4 +23,7 @@ router.route("/create").post(uploader, createCompany);
 
 router.route("/:id/verify").get(verifiedCompany);
 router.route("/signin").post(signinCompany);
+
+router.route("/reset").post(resetPassword);
+router.route("/:id/:token/reset").post(changePassword);
 module.exports = router;

@@ -1,0 +1,18 @@
+GOOGLE_SECRET = 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
+GOOGLE_ID = 1001238833498-cqm9f9c1mh3m1khppm3392npjalj8b4s.apps.googleusercontent.com
+
+GOOGLE_REFRESHTOKEN = 1//04h7d93kXEa_mCgYIARAAGAQSNwF-L9IrRBMf9gTPHHPp4rsWwU2m6arOFmIUgpZPaL-Cov37TXIF6SM2XIoFhScTFOD1ZDaezBY
+
+GOOGLE_REDIRECT = https://developers.google.com/oauthplayground
+
+USER = Gideonekeke64@gmail.com
+USER1 = ajwalletcoins@gmail.com
+
+PASSWORD = sgczftichnkcqksx
+
+CLOUD_SECRET = VxFfeGaNMPPudxcq0GWcsh6zfRk
+
+CLOUD_KEY = 464513458841612
+CLOUD_NAME= dv4dlmp4e
+
+DB = mongodb+srv://AuthClass:AuthClass@codelab.u4drr.mongodb.net/VotersDB?retryWrites=true&w=majority

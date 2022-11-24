@@ -5,7 +5,11 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const cloudinary = require("../util/cluodinary");
 
-const { verifiedCompanyMail, verifiedTokenMail } = require("../util/email");
+const {
+  verifiedCompanyMail,
+  verifiedTokenMail,
+  resetCompanyMyPassword,
+} = require("../util/email");
 
 const getCompany = async (req, res) => {
   try {
@@ -190,8 +194,79 @@ const signinCompany = async (req, res) => {
     }
   } catch (err) {
     return res.status(404).json({
-      message: err,
+      message: err.message,
     });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    const user = await companySchema.findOne({ name });
+
+    if (user) {
+      if (user?.verified && user?.verifiedToken === "") {
+        const token = crypto.randomBytes(5).toString("hex");
+        const myToken = jwt.sign({ token }, "ThisIsAEventApp");
+
+        const newUser = await companySchema.findByIdAndUpdate(
+          user._id,
+          {
+            verifiedToken: myToken,
+          },
+          { new: true }
+        );
+
+        resetCompanyMyPassword(newUser);
+
+        return res.status(200).json({
+          message: "Please check your email to continue",
+        });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You do not have enough right to do this!" });
+      }
+    } else {
+      return res.status(404).json({ message: "user can't be found" });
+    }
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ message: `An Error Occur: ${error.message}` });
+  }
+};
+
+const changePassword = async (req, res) => {
+  try {
+    const { password } = req.body;
+    const user = await companySchema.findById(req.params.id);
+    if (user) {
+      if (user.verified && user.verifiedToken === req.params.token) {
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(password, salt);
+
+        await companySchema.findByIdAndUpdate(
+          user._id,
+          {
+            verifiedToken: "",
+            password: hashed,
+          },
+          { new: true }
+        );
+      }
+    } else {
+      return res.status(404).json({ message: "operation can't be done" });
+    }
+
+    return res.status(200).json({
+      message: "password has been changed",
+    });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ message: `An Error Occur: ${error.message}` });
   }
 };
 
@@ -203,4 +278,6 @@ module.exports = {
   createCompany,
   verifiedCompany,
   signinCompany,
+  resetPassword,
+  changePassword,
 };

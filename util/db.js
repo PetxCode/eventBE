@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const newURL =
-  "mongodb+srv://AuthClass:AuthClass@codelab.u4drr.mongodb.net/VotersDB?retryWrites=true&w=majority";
+const newURL = process.env.DB;
 
 const url = "mongodb://localhost/eventDB";
 

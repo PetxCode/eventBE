@@ -2,24 +2,13 @@ const ejs = require("ejs");
 const path = require("path");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
-// Changing Items
 
-const GOOGLE_SECRET = "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";
-const GOOGLE_ID =
-  "1001238833498-cqm9f9c1mh3m1khppm3392npjalj8b4s.apps.googleusercontent.com";
-const GOOGLE_REFRESHTOKEN =
-  "1//04h7d93kXEa_mCgYIARAAGAQSNwF-L9IrRBMf9gTPHHPp4rsWwU2m6arOFmIUgpZPaL-Cov37TXIF6SM2XIoFhScTFOD1ZDaezBY";
+const GOOGLE_SECRET = process.env.GOOGLE_SECRET;
+const GOOGLE_ID = process.env.GOOGLE_ID;
 
-// Again // External Items
+const GOOGLE_REFRESHTOKEN = process.env.GOOGLE_REFRESHTOKEN;
 
-// const GOOGLE_SECRET = "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";
-// const GOOGLE_ID =
-//   "922981826695-rviuikdrd4rk1kbsake7iusml8qb2ibc.apps.googleusercontent.com";
-// const GOOGLE_REFRESHTOKEN =
-//   "1//04C7dWmo7YblKCgYIARAAGAQSNwF-L9IrEt7Td5GJtrIEB-g_xad5nm-lvt6tP-RxNPBAoaHu0q1jNXf8c20Bsv89GRyec94Gri4";
-
-// Constant
-const GOOGLE_REDIRECT = "https://developers.google.com/oauthplayground";
+const GOOGLE_REDIRECT = process.env.GOOGLE_REDIRECT;
 
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
 
@@ -32,7 +21,7 @@ const verifiedCompanyMail = async (company) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "ajwalletcoins@gmail.com",
+        user: process.env.USER1,
         refreshToken: accessToken.token,
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
@@ -43,8 +32,8 @@ const verifiedCompanyMail = async (company) => {
     const myTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "Gideonekeke64@gmail.com",
-        pass: "sgczftichnkcqksx",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
       },
     });
 
@@ -81,7 +70,7 @@ const verifiedTokenMail = async (company) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "ajwalletcoins@gmail.com",
+        user: process.env.USER1,
         refreshToken: accessToken.token,
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
@@ -92,8 +81,8 @@ const verifiedTokenMail = async (company) => {
     const myTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "Gideonekeke64@gmail.com",
-        pass: "sgczftichnkcqksx",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
       },
     });
 
@@ -127,7 +116,7 @@ const verifiedStaffMail = async (user, company) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "ajwalletcoins@gmail.com",
+        user: process.env.USER1,
         refreshToken: accessToken.token,
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
@@ -138,8 +127,8 @@ const verifiedStaffMail = async (user, company) => {
     const myTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "Gideonekeke64@gmail.com",
-        pass: "sgczftichnkcqksx",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
       },
     });
 
@@ -175,7 +164,7 @@ const verifiedStaffMailTOAdmin = async (user, company) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "ajwalletcoins@gmail.com",
+        user: process.env.USER1,
         refreshToken: accessToken.token,
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
@@ -186,8 +175,8 @@ const verifiedStaffMailTOAdmin = async (user, company) => {
     const myTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "Gideonekeke64@gmail.com",
-        pass: "sgczftichnkcqksx",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
       },
     });
 
@@ -223,7 +212,7 @@ const verifiedStaffFromAdmin = async (user, company) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "ajwalletcoins@gmail.com",
+        user: process.env.USER1,
         refreshToken: accessToken.token,
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
@@ -234,8 +223,8 @@ const verifiedStaffFromAdmin = async (user, company) => {
     const myTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "Gideonekeke64@gmail.com",
-        pass: "sgczftichnkcqksx",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
       },
     });
 
@@ -271,7 +260,7 @@ const resetMyPassword = async (newUser, company) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "ajwalletcoins@gmail.com",
+        user: process.env.USER1,
         refreshToken: accessToken.token,
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
@@ -281,8 +270,8 @@ const resetMyPassword = async (newUser, company) => {
     const myTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "Gideonekeke64@gmail.com",
-        pass: "sgczftichnkcqksx",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
       },
     });
 
@@ -309,6 +298,51 @@ const resetMyPassword = async (newUser, company) => {
   }
 };
 
+const resetCompanyMyPassword = async (newUser) => {
+  try {
+    const accessToken = await oAuth.getAccessToken();
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.USER1,
+        refreshToken: accessToken.token,
+        clientId: GOOGLE_ID,
+        clientSecret: GOOGLE_SECRET,
+        accessToken: GOOGLE_REFRESHTOKEN,
+      },
+    });
+    const myTransporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
+      },
+    });
+
+    const buildFile = path.join(__dirname, "../views/resetPassword.ejs");
+
+    const data = await ejs.renderFile(buildFile, {
+      name: newUser.nameame,
+      id: newUser?._id,
+      myToken: newUser.verifiedToken,
+      url: "http://localhost:2233/api/company",
+      logo: newUser.logo,
+    });
+
+    const mailOptions = {
+      from: "AJ Vote ❤❤❤  <newstudentsportal2@gmail.com>",
+      to: newUser?.email,
+      subject: "Requesting for Password Reset",
+      html: data,
+    };
+
+    transporter.sendMail(mailOptions);
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   verifiedCompanyMail,
   verifiedTokenMail,
@@ -316,4 +350,5 @@ module.exports = {
   verifiedStaffMailTOAdmin,
   verifiedStaffFromAdmin,
   resetMyPassword,
+  resetCompanyMyPassword,
 };
