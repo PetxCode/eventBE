@@ -5,6 +5,8 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const cloudinary = require("../util/cluodinary");
 
+const { verifiedCompanyMail, verifiedTokenMail } = require("../util/email");
+
 const getCompany = async (req, res) => {
   try {
     const company = await companySchema.find();
@@ -91,17 +93,20 @@ const createCompany = async (req, res) => {
     const image = await streamUpload(req);
 
     const genNumb = crypto.randomBytes(10).toString("hex");
+    const token = jwt.sign(genNumb, "This_istheBest");
 
-    const token = await jwt.sign(genNumb, "This_istheBest");
-
-    await companySchema.create({
+    const company = await companySchema.create({
       name,
       logo: image.secure_url,
       vision,
-      status: admin,
+      status: "admin",
       email,
       password: hashData,
       verifiedToken: token,
+    });
+
+    verifiedCompanyMail(company).then((result) => {
+      console.log("sent: ", result);
     });
 
     return res.status(201).json({
@@ -109,7 +114,7 @@ const createCompany = async (req, res) => {
     });
   } catch (err) {
     return res.status(404).json({
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -129,6 +134,8 @@ const verifiedCompany = async (req, res) => {
           },
           { new: true }
         );
+
+        verifiedTokenMail(company);
 
         return res.status(200).json({
           message: "success: Account has been verified...!",

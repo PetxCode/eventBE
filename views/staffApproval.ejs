@@ -15,23 +15,25 @@
         <table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0; border-left:1px solid #e8e7e5; border-right:1px solid #e8e7e5; border-bottom:1px solid #e8e7e5; padding: 10px" bg="#FFFFFF">
           
           <div width="350" height="150" align="center" style="border-radius: 50%;">
-           <img src="https://res.cloudinary.com/dv4dlmp4e/image/upload/v1667857306/NYCNi_wvwlde.png" width="60" height="60" style="padding-top:5px" alt="" border="0"/>
-            <img src="https://res.cloudinary.com/dv4dlmp4e/image/upload/v1667857308/Lagos_kidbfs.png" width="60" height="60" style="padding-top:5px" alt="" border="0"/>
+           <img src="https://res.cloudinary.com/dv4dlmp4e/image/upload/v1669292465/iw92d0vivvcrojxwxaby.png" width="120" height="60" style="padding-top:5px ; object-fit: contain" alt="" border="0"/>
+            <img src="https://res.cloudinary.com/dv4dlmp4e/image/upload/v1667857308/Lagos_kidbfs.png" width="120" height="60" style="padding-top:5px ; object-fit: contain" alt="" border="0"/>
           </div>
 
           <tr>
-            <td align="center" style="padding:0px 40px 40px 40px"><p style="color:#262626; font-size:32px; text-align:center; font-family: Verdana, Geneva, sans-serif">Hello <%= organisation %> Admin! <br> <%= name %>'s Account has been Activated</p>
-                <b style="color:#000000; font-size:16px; text-align:left; font-family: Verdana, Geneva, sans-serif; line-height:22px ">
+            <td align="center" style="padding:0px 40px 40px 40px"><p style="color:#262626; font-size:32px; text-align:center; font-family: Verdana, Geneva, sans-serif">Hello <%= companyName %>! <br> <%= name %>'s Account has been Activated</p>
+                <b style="color:#000000; font-size:18px; text-align:left; font-family: Verdana, Geneva, sans-serif; line-height:22px ">
                 Account Finally Activated</b><br/>
                 <br/>
-                This message was sent to you to finally verified <%= name %> who tries to create an account with NYCC for the on going voting exercise <br/> <br/>
+                <div style="font-size: 16px">
+                  This message was sent to you to finally verified <strong><%= name %> </strong>who tries to create an account under your company in order to be able to carry out report process and more... <br/> <br/>
 
-              It is obvious that he/she is a bolivian member of <strong> <%= organisation %></strong>!</br>
+              It is obvious that he/she is a bolivian staff member of <strong> <%= companyName %></strong> because you've approved him/her to contiune the registration PROCESS!</br>
                 <br/>
                 <br/>
-                Below is the Voter's Code he/she needs to access their Account!!!
+                Below is staff's Code, he/she needs to access their Account!!!
 
                 Please share it with them
+                </div>
 
                 <div>
                   <br/>
@@ -39,6 +41,7 @@
                   <div
                   style="text-decoration: none;
                   padding: 20px 30px;
+                  width: 150px;
                   color: white;
                   margin-top: 50px;
                   background-color: #000269;

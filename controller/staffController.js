@@ -7,6 +7,12 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const cloudinary = require("../util/cluodinary");
 const mongoose = require("mongoose");
+const {
+  verifiedStaffMail,
+  verifiedStaffMailTOAdmin,
+  verifiedStaffFromAdmin,
+  resetMyPassword,
+} = require("../util/email");
 
 const getStaffs = async (req, res) => {
   try {
@@ -65,7 +71,6 @@ const createStaff = async (req, res) => {
 
     const saltData = await bcrypt.genSalt(10);
     const hashData = await bcrypt.hash(password, saltData);
-    // const image = await cloudinary.uploader.upload(req.file.path);
     const genNumb = crypto.randomBytes(10).toString("hex");
     const userToken = jwt.sign(genNumb, "This_istheBest");
 
@@ -85,6 +90,7 @@ const createStaff = async (req, res) => {
     const image = await streamUpload(req);
 
     const company = await companyModel.findOne({ name });
+
     if (company) {
       if (company.companyToken === token) {
         const user = await staffModel.create({
@@ -99,6 +105,7 @@ const createStaff = async (req, res) => {
 
         company.staff.push(mongoose.Types.ObjectId(user._id));
         company.save();
+        verifiedStaffMail(user, company);
 
         return res.json({
           message: `Staff has been created but not yet verified`,
@@ -140,22 +147,23 @@ const deleteStaff = async (req, res) => {
 const verifiedStaff = async (req, res) => {
   try {
     const user = await staffModel.findById(req.params.id);
+    const company = await companyModel.findOne({ name: user.companyName });
     const codedNumb = crypto.randomBytes(2).toString("hex");
     if (user) {
       if (user.verifiedToken !== "") {
         const userData = await staffModel.findByIdAndUpdate(
           user._id,
           {
-            verifiedToken: "",
-            verified: true,
             staffToken: codedNumb,
           },
           { new: true }
         );
 
+        verifiedStaffMailTOAdmin(user, company);
+
         return res.status(200).json({
-          message: `Staff is now verified`,
-          data: userData,
+          message: `Admin has recieved your request`,
+          // data: userData,
         });
       } else {
         return res.status(404).json({
@@ -171,6 +179,56 @@ const verifiedStaff = async (req, res) => {
     return res.status(404).json({
       message: err.message,
     });
+  }
+};
+
+const VerifiedStaffFinally = async (req, res) => {
+  try {
+    const { response } = req.body;
+
+    const getUser = await staffModel.findById(req.params.id);
+    const company = await companyModel.findOne({ name: getUser.companyName });
+
+    if (response === "Yes") {
+      if (getUser) {
+        await staffModel.findByIdAndUpdate(
+          req.params.id,
+          {
+            verifiedToken: "",
+            verified: true,
+          },
+          { new: true }
+        );
+
+        verifiedStaffFromAdmin(getUser, company);
+
+        res.status(201).json({ message: "Sent..." });
+        res.end();
+      } else {
+        return res.status(404).json({
+          message: "user doesn't exist",
+        });
+      }
+    } else if (response === "No") {
+      if (getUser) {
+        const staff = await staffModel.findById(req.params.id);
+
+        const name = staff.companyName;
+        const company = await companyModel.findOne({ name });
+
+        company.staff.pull(new mongoose.Types.ObjectId(staff._id));
+        company.save();
+
+        await staffModel.findByIdAndDelete(req.params.id);
+        return res.status(201).json({ message: "staff has been deleted" });
+      }
+    } else {
+      return res.json({ message: "You can't be accepted" });
+    }
+
+    res.end();
+  } catch (err) {
+    return;
   }
 };
 
@@ -223,30 +281,71 @@ const staffSignin = async (req, res) => {
   }
 };
 
-const staffTrial = async (req, res) => {
+const resetPassword = async (req, res) => {
   try {
-    let streamUpload = (req) => {
-      return new Promise((resolve, reject) => {
-        let stream = cloudinary.uploader.upload_stream((error, result) => {
-          if (result) {
-            resolve(result);
-          } else {
-            reject(error);
-          }
+    const { email } = req.body;
+
+    const user = await staffModel.findOne({ email });
+    const company = await companyModel.findOne({ name: user.companyName });
+
+    if (user) {
+      if (user?.verified && user?.verifiedToken === "") {
+        const token = crypto.randomBytes(5).toString("hex");
+        const myToken = jwt.sign({ token }, "ThisIsAVoteApp");
+
+        await userModel.findByIdAndUpdate(
+          user._id,
+          {
+            verifiedToken: myToken,
+          },
+          { new: true }
+        );
+
+        resetMyPassword(user, company);
+
+        return res.status(200).json({
+          message: "Please check your email to continue",
         });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You do not have enough right to do this!" });
+      }
+    } else {
+      return res.status(404).json({ message: "user can't be found" });
+    }
+  } catch (error) {
+    return res.status(404).json({ message: "An Error Occur " });
+  }
+};
 
-        streamifier.createReadStream(req?.file.buffer).pipe(stream);
-      });
-    };
+const changePassword = async (req, res) => {
+  try {
+    const { password } = req.body;
+    const user = await staffModel.findById(req.params.id);
+    if (user) {
+      if (user.verified && user.token === req.params.token) {
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(password, salt);
 
-    const upload = async (req) => {
-      const result = await streamUpload(req);
-      res.json({ message: "uploaded", data: result?.secure_url });
-    };
+        await staffModel.findByIdAndUpdate(
+          user._id,
+          {
+            verifiedToken: "",
+            password: hashed,
+          },
+          { new: true }
+        );
+      }
+    } else {
+      return res.status(404).json({ message: "operation can't be done" });
+    }
 
-    upload(req);
-  } catch (err) {
-    return res.status(404).json({ message: err.message });
+    return res.status(200).json({
+      message: "password has been changed",
+    });
+  } catch (error) {
+    return res.status(404).json({ message: "An Error Occur" });
   }
 };
 
@@ -258,5 +357,7 @@ module.exports = {
   verifiedStaff,
   staffSignin,
   getStaffHistory,
-  staffTrial,
+  VerifiedStaffFinally,
+  resetPassword,
+  changePassword,
 };
