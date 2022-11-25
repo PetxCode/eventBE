@@ -49,7 +49,7 @@ const verifiedCompanyMail = async (company) => {
     });
 
     const mailOptions = {
-      from: "Event ❤❤❤ <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤ <smallreportapp@gmail.com>",
       to: company.email,
       subject: "Account Verification",
       html: data,
@@ -97,7 +97,7 @@ const verifiedTokenMail = async (company) => {
     });
 
     const mailOptions = {
-      from: "Event ❤❤❤ <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤ <smallreportapp@gmail.com>",
       to: company.email,
       subject: "Account Secret Token",
       html: data,
@@ -145,7 +145,7 @@ const verifiedStaffMail = async (user, company) => {
     });
 
     const mailOptions = {
-      from: "Event ❤❤❤ <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤ <smallreportapp@gmail.com>",
       to: user.email,
       subject: "Account Verification",
       html: data,
@@ -193,7 +193,7 @@ const verifiedStaffMailTOAdmin = async (user, company) => {
     });
 
     const mailOptions = {
-      from: "Event ❤❤❤ <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤ <smallreportapp@gmail.com>",
       to: company.email,
       subject: "Account Verification",
       html: data,
@@ -241,7 +241,7 @@ const verifiedStaffFromAdmin = async (user, company) => {
     });
 
     const mailOptions = {
-      from: "Event ❤❤❤ <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤ <smallreportapp@gmail.com>",
       to: company.email,
       subject: "Account Verification",
       html: data,
@@ -286,7 +286,7 @@ const resetMyPassword = async (newUser, company) => {
     });
 
     const mailOptions = {
-      from: "AJ Vote ❤❤❤  <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤  <smallreportapp@gmail.com>",
       to: newUser?.email,
       subject: "Requesting for Password Reset",
       html: data,
@@ -331,7 +331,7 @@ const resetCompanyMyPassword = async (newUser) => {
     });
 
     const mailOptions = {
-      from: "AJ Vote ❤❤❤  <newstudentsportal2@gmail.com>",
+      from: "smallReport ❤❤❤  <smallreportapp@gmail.com>",
       to: newUser?.email,
       subject: "Requesting for Password Reset",
       html: data,
