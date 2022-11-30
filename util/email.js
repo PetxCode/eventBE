@@ -343,6 +343,44 @@ const resetCompanyMyPassword = async (newUser) => {
   }
 };
 
+const assignedToken = async (hub, staff, company) => {
+  try {
+    const accessToken = await oAuth.getAccessToken();
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.USER1,
+        refreshToken: accessToken.token,
+        clientId: GOOGLE_ID,
+        clientSecret: GOOGLE_SECRET,
+        accessToken: GOOGLE_REFRESHTOKEN,
+      },
+    });
+
+    const buildFile = path.join(__dirname, "../views/AssignedCode.ejs");
+    const data = await ejs.renderFile(buildFile, {
+      name: staff.userName,
+      id: staff?._id,
+      code: hub.hubToken,
+      url: "http://localhost:3000/api/hub",
+      logo: company.logo,
+      center: hub.name,
+    });
+
+    const mailOptions = {
+      from: "smallReport ❤❤❤  <smallreportapp@gmail.com>",
+      to: staff?.email,
+      subject: "Your new center Token",
+      html: data,
+    };
+
+    transporter.sendMail(mailOptions);
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   verifiedCompanyMail,
   verifiedTokenMail,
@@ -351,4 +389,5 @@ module.exports = {
   verifiedStaffFromAdmin,
   resetMyPassword,
   resetCompanyMyPassword,
+  assignedToken,
 };

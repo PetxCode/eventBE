@@ -351,6 +351,50 @@ const changePassword = async (req, res) => {
   }
 };
 
+const findStaff = async (req, res) => {
+  try {
+    const staff = await staffModel.find();
+    return res.status(200).json({
+      message: `staffs has been found`,
+      data: staff,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: `Error: ${err.message}`,
+    });
+  }
+};
+
+const SearchStaff = async (req, res) => {
+  try {
+    const makeSearch = req.query
+      ? {
+          $or: [{ userName: { $regex: req.query.search, $options: "i" } }],
+        }
+      : req.query;
+
+    const companyName = await companyModel.findById(req.params.id);
+    const staff = await staffModel.find(makeSearch);
+    const data = staff[0].companyName;
+
+    if (companyName.name === data) {
+      return res.status(200).json({
+        message: `${staff[0].userName} has been found`,
+        data: staff,
+      });
+    }
+
+    return res.status(200).json({
+      message: `staff can't be found`,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: `Error: ${err.message}`,
+    });
+  }
+};
+
+// ${staff.userName}
 module.exports = {
   createStaff,
   getStaffs,
@@ -362,4 +406,17 @@ module.exports = {
   VerifiedStaffFinally,
   resetPassword,
   changePassword,
+  findStaff,
+  SearchStaff,
 };
+
+// const makeSearch = req.query
+//   ? {
+//       $or: [
+//         { fullName: { $regex: req.query.search, $options: "i" } },
+//         { _id: { $regex: req.query.search, $options: "i" } },
+//         // { userName: { $regex: req.query.search, $options: "i" } },
+//         //  { accounNumber: { $regex: req.query.search, $options: "i" } },
+//       ],
+//     }
+//   : req.query;

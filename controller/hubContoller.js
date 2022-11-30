@@ -3,6 +3,7 @@ const hubModel = require("../model/hubModel");
 const staffModel = require("../model/staffModel");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
+const { assignedToken } = require("../util/email");
 
 const getHubs = async (req, res) => {
   try {
@@ -115,10 +116,34 @@ const deleteHub = async (req, res) => {
   }
 };
 
+const assignHub = async (req, res) => {
+  try {
+    const { userName } = req.body;
+    const company = await companyModel.findById(req.params.id);
+    const staff = await staffModel.findOne({ userName });
+    if (company.name === staff.companyName) {
+      const hub = await hubModel.findById(req.params.hubID);
+      assignedToken(hub, staff, company);
+      return res.status(200).json({
+        message: `Hub has been assigned to ${staff.userName}`,
+      });
+    } else {
+      return res.status(404).json({
+        message: "No Staff Found in your company bearing such Name",
+      });
+    }
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   createHub,
   deleteHub,
   getHubInfo,
   getHubs,
   resetHubToken,
+  assignHub,
 };
