@@ -122,14 +122,22 @@ const assignHub = async (req, res) => {
     const company = await companyModel.findById(req.params.id);
     const staff = await staffModel.findOne({ userName });
     if (company.name === staff.companyName) {
-      const hub = await hubModel.findById(req.params.hubID);
+      const hub = await hubModel.findByIdAndUpdate(
+        req.params.hubID,
+        {
+          staff: userName,
+        },
+        { new: true }
+      );
+
       assignedToken(hub, staff, company);
       return res.status(200).json({
-        message: `Hub has been assigned to ${staff.userName}`,
+        message: `Hub has been assigned to ${staff.userName} to report revenue records`,
       });
     } else {
       return res.status(404).json({
-        message: "No Staff Found in your company bearing such Name",
+        message:
+          "No Staff Found in your company bearing such Name, please try again!",
       });
     }
   } catch (err) {

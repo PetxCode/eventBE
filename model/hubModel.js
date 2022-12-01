@@ -8,6 +8,9 @@ const hubSchema = mongoose.Schema(
     hubToken: {
       type: String,
     },
+    staff: {
+      type: String,
+    },
 
     salesRecord: [
       {

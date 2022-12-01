@@ -10,6 +10,7 @@ const {
 const router = express.Router();
 
 router.route("/:id/:hubID/assign").get(assignHub);
+
 router.route("/:id/create").post(createHub);
 router.route("/:id").get(getHubInfo);
 router.route("/:id/hubs").get(getHubs);
