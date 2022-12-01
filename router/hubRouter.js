@@ -9,7 +9,7 @@ const {
 } = require("../controller/hubContoller");
 const router = express.Router();
 
-router.route("/:id/:hubID/assign").get(assignHub);
+router.route("/:id/:hubID/assign").post(assignHub);
 
 router.route("/:id/create").post(createHub);
 router.route("/:id").get(getHubInfo);
