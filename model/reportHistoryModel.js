@@ -17,6 +17,11 @@ const reportHistorySchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "staffs",
     },
+
+    company: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "companies",
+    },
   },
   { timestamps: true }
 );

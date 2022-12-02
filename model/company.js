@@ -53,6 +53,13 @@ const companySchema = mongoose.Schema(
         ref: "hubs",
       },
     ],
+
+    history: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "reportHistories",
+      },
+    ],
   },
   { timestamps: true }
 );

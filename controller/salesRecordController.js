@@ -3,14 +3,15 @@ const hubModel = require("../model/hubModel");
 const staffModel = require("../model/staffModel");
 const salesRecordModel = require("../model/saleRecordModel");
 const reportHistoryModel = require("../model/reportHistoryModel");
-
-const crypto = require("crypto");
 const mongoose = require("mongoose");
 const moment = require("moment");
 
 const getAllSalesRecords = async (req, res) => {
   try {
-    const sales = await salesRecordModel.findById(req.params.id).populate({
+    // const hubData = await hubModel.findById(req.params.hubID);
+    // const name = hubData.
+
+    const sales = await companyModel.findById(req.params.id).populate({
       path: "history",
       options: { sort: { createdAt: -1 } },
     });
@@ -72,17 +73,16 @@ const createSalesRecord = async (req, res) => {
 
     const dater = Date.now();
 
-    await reportHistoryModel.create({
-      totalExpense,
-      totalSales,
-      profit: totalSales - totalExpense,
-      date: `${moment(dater).format("dddd")}, ${moment(dater).format(
-        "MMMM Do YYYY, h:mm:ss"
-      )}`,
-
-      submittedBy: user.userName,
-      company: company.name,
-    });
+    // await reportHistoryModel.create({
+    //   totalExpense,
+    //   totalSales,
+    //   profit: totalSales - totalExpense,
+    //   date: `${moment(dater).format("dddd")}, ${moment(dater).format(
+    //     "MMMM Do YYYY, h:mm:ss"
+    //   )}`,
+    //   submittedBy: user.userName,
+    //   company: company.name,
+    // });
 
     const sales = await salesRecordModel.create({
       hubName: hub.name,
@@ -99,6 +99,9 @@ const createSalesRecord = async (req, res) => {
 
     hub.salesRecord.push(mongoose.Types.ObjectId(sales._id));
     hub.save();
+
+    company.history.push(mongoose.Types.ObjectId(sales._id));
+    company.save();
 
     user.history.push(mongoose.Types.ObjectId(sales._id));
     user.save();
