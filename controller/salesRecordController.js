@@ -94,6 +94,7 @@ const createSalesRecord = async (req, res) => {
       )}`,
 
       submittedBy: user.userName,
+      image: user.userImage,
       // company: company.name,
     });
 

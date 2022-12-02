@@ -22,6 +22,10 @@ const salesRecordSchema = mongoose.Schema(
       type: String,
     },
 
+    image: {
+      type: String,
+    },
+
     profit: {
       type: Number,
     },
