@@ -6,9 +6,10 @@ const salesRecordSchema = mongoose.Schema(
       type: String,
     },
 
-    name: {
+    hubName: {
       type: String,
     },
+
     totalExpense: {
       type: Number,
     },

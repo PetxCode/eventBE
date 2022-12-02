@@ -71,10 +71,8 @@ const createSalesRecord = async (req, res) => {
     const company = await companyModel.findById(companyIdentity);
 
     const dater = Date.now();
-    console.log(user.userName, company.name);
 
     await reportHistoryModel.create({
-      name: hub.name,
       totalExpense,
       totalSales,
       profit: totalSales - totalExpense,
@@ -87,6 +85,7 @@ const createSalesRecord = async (req, res) => {
     });
 
     const sales = await salesRecordModel.create({
+      hubName: hub.name,
       totalExpense,
       totalSales,
       profit: totalSales - totalExpense,
