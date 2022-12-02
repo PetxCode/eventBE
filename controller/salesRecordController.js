@@ -8,6 +8,24 @@ const crypto = require("crypto");
 const mongoose = require("mongoose");
 const moment = require("moment");
 
+const getAllSalesRecords = async (req, res) => {
+  try {
+    const sales = await salesRecordModel.findById(req.params.id).populate({
+      path: "history",
+      options: { sort: { createdAt: -1 } },
+    });
+
+    return res.status(200).json({
+      message: `All sales record`,
+      data: sales,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 const getSalesRecords = async (req, res) => {
   try {
     const hub = await hubModel.findById(req.params.id).populate({
@@ -56,6 +74,7 @@ const createSalesRecord = async (req, res) => {
     console.log(user.userName, company.name);
 
     await reportHistoryModel.create({
+      name: hub.name,
       totalExpense,
       totalSales,
       profit: totalSales - totalExpense,
@@ -121,4 +140,5 @@ module.exports = {
   deleteSalesRecord,
   getSalesRecordInfo,
   getSalesRecords,
+  getAllSalesRecords,
 };
