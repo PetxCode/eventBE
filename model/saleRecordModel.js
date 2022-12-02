@@ -5,6 +5,7 @@ const salesRecordSchema = mongoose.Schema(
     date: {
       type: String,
     },
+
     name: {
       type: String,
     },
