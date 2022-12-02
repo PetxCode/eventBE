@@ -23,6 +23,24 @@ const getHubs = async (req, res) => {
   }
 };
 
+const getHubSales = async (req, res) => {
+  try {
+    const hub = await hubModel.findById(req.params.id).populate({
+      path: "salesRecord",
+      options: { sort: { createdAt: -1 } },
+    });
+
+    return res.status(200).json({
+      message: `These are your hubs' profile`,
+      data: hub,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 const getHubInfo = async (req, res) => {
   try {
     const { token } = req.body;
@@ -154,4 +172,5 @@ module.exports = {
   getHubs,
   resetHubToken,
   assignHub,
+  getHubSales,
 };

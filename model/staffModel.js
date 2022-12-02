@@ -54,6 +54,13 @@ const staffSchema = mongoose.Schema(
         ref: "reportHistories",
       },
     ],
+
+    salesRecord: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "salesRecords",
+      },
+    ],
   },
   { timestamps: true }
 );

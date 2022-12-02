@@ -31,9 +31,19 @@ const salesRecordSchema = mongoose.Schema(
       ref: "hubs",
     },
 
-    company: {
-      type: String,
+    staff: {
+      type: mongoose.Types.ObjectId,
+      ref: "staffs",
     },
+
+    company: {
+      type: mongoose.Types.ObjectId,
+      ref: "companies",
+    },
+
+    // company: {
+    //   type: String,
+    // },
   },
   { timestamps: true }
 );

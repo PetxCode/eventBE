@@ -12,7 +12,7 @@ const getAllSalesRecords = async (req, res) => {
     // const name = hubData.
 
     const sales = await companyModel.findById(req.params.id).populate({
-      path: "history",
+      path: "salesRecord",
       options: { sort: { createdAt: -1 } },
     });
 
@@ -81,7 +81,7 @@ const createSalesRecord = async (req, res) => {
     //     "MMMM Do YYYY, h:mm:ss"
     //   )}`,
     //   submittedBy: user.userName,
-    //   company: company.name,
+    //   // company: company.name,
     // });
 
     const sales = await salesRecordModel.create({
@@ -94,16 +94,16 @@ const createSalesRecord = async (req, res) => {
       )}`,
 
       submittedBy: user.userName,
-      company: company.name,
+      // company: company.name,
     });
 
     hub.salesRecord.push(mongoose.Types.ObjectId(sales._id));
     hub.save();
 
-    company.history.push(mongoose.Types.ObjectId(sales._id));
+    company.salesRecord.push(mongoose.Types.ObjectId(sales._id));
     company.save();
 
-    user.history.push(mongoose.Types.ObjectId(sales._id));
+    user.salesRecord.push(mongoose.Types.ObjectId(sales._id));
     user.save();
 
     return res.json({
@@ -129,6 +129,60 @@ const deleteSalesRecord = async (req, res) => {
     return res.json({
       message: `sales record has been deleted`,
       data: hub,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
+const createHubSales = async (req, res) => {
+  try {
+    const user = await staffModel.findById(req.params.staffID);
+    const hubData = await hubModel.findById(req.params.id);
+
+    const companyIdentity = hubData.company;
+    const companyData = await companyModel.findById(companyIdentity);
+
+    const dater = Date.now();
+
+    await reportHistoryModel.create({
+      totalExpense,
+      totalSales,
+      profit: totalSales - totalExpense,
+      date: `${moment(dater).format("dddd")}, ${moment(dater).format(
+        "MMMM Do YYYY, h:mm:ss"
+      )}`,
+      submittedBy: user.userName,
+      // company: company.name,
+    });
+
+    const sales = await salesRecordModel.create({
+      hubName: hub.name,
+      totalExpense,
+      totalSales,
+      profit: totalSales - totalExpense,
+      date: `${moment(dater).format("dddd")}, ${moment(dater).format(
+        "MMMM Do YYYY, h:mm:ss"
+      )}`,
+
+      submittedBy: user.userName,
+      company: company.name,
+    });
+
+    hubData.salesRecord.push(mongoose.Types.ObjectId(sales._id));
+    hubData.save();
+
+    companyData.history.push(mongoose.Types.ObjectId(sales._id));
+    companyData.save();
+
+    user.history.push(mongoose.Types.ObjectId(sales._id));
+    user.save();
+
+    return res.json({
+      message: `sales Record has been created`,
+      data: sales,
     });
   } catch (err) {
     return res.status(404).json({

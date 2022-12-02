@@ -35,7 +35,7 @@ const getStaffs = async (req, res) => {
 const getStaffHistory = async (req, res) => {
   try {
     const staffs = await staffModel.findById(req.params.id).populate({
-      path: "history",
+      path: "salesRecord",
       options: { sort: { createdAt: -1 } },
     });
 
