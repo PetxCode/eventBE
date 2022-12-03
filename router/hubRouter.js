@@ -7,11 +7,13 @@ const {
   resetHubToken,
   assignHub,
   getHubSales,
+  getHubStaff,
 } = require("../controller/hubContoller");
 const router = express.Router();
 
 router.route("/:id/:hubID/assign").post(assignHub);
 
+router.route("/:id/hubstaff").get(getHubStaff);
 router.route("/:id/create").post(createHub);
 router.route("/:id").get(getHubInfo);
 router.route("/:id/hubSales").get(getHubSales);

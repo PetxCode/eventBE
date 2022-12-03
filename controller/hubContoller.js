@@ -23,6 +23,24 @@ const getHubs = async (req, res) => {
   }
 };
 
+const getHubStaff = async (req, res) => {
+  try {
+    const staff = await staffModel.findById(req.params.id);
+    const name = staff.userName;
+    console.log(staff, name);
+    const hub = await hubModel.findOne({ staff: name });
+
+    return res.status(200).json({
+      message: `These are your hubs' profile`,
+      data: hub,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 const getHubSales = async (req, res) => {
   try {
     const hub = await hubModel.findById(req.params.id).populate({
@@ -173,4 +191,5 @@ module.exports = {
   resetHubToken,
   assignHub,
   getHubSales,
+  getHubStaff,
 };
