@@ -12,6 +12,11 @@ const hubSchema = mongoose.Schema(
       type: String,
     },
 
+    // staff: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "staffs",
+    // },
+
     salesRecord: [
       {
         type: mongoose.Schema.Types.ObjectId,

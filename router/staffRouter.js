@@ -12,6 +12,7 @@ const {
   changePassword,
   findStaff,
   SearchStaff,
+  getStaffHubs,
 } = require("../controller/staffController");
 const { uploader } = require("../util/multer");
 const router = express.Router();
@@ -21,6 +22,8 @@ router.route("/create").post(uploader, createStaff);
 router.route("/").get(findStaff);
 router.route("/:id").get(getStaffInfo);
 router.route("/:id/gethistory").get(getStaffHistory);
+
+router.route("/:id/gethub").get(getStaffHubs);
 
 router.route("/:id/company").get(getStaffs);
 

@@ -157,6 +157,7 @@ const assignHub = async (req, res) => {
     const { userName } = req.body;
     const company = await companyModel.findById(req.params.id);
     const staff = await staffModel.findOne({ userName });
+
     if (company.name === staff.companyName) {
       const hub = await hubModel.findByIdAndUpdate(
         req.params.hubID,
@@ -165,6 +166,9 @@ const assignHub = async (req, res) => {
         },
         { new: true }
       );
+
+      staff.hub.push(new mongoose.Types.ObjectId(hub._id));
+      staff.save();
 
       assignedToken(hub, staff, company);
       return res.status(200).json({

@@ -50,6 +50,24 @@ const getStaffHistory = async (req, res) => {
   }
 };
 
+const getStaffHubs = async (req, res) => {
+  try {
+    const staffs = await staffModel.findById(req.params.id).populate({
+      path: "hub",
+      options: { sort: { createdAt: -1 } },
+    });
+
+    return res.status(200).json({
+      message: `These are hubs that has ever been assigned to you `,
+      data: staffs,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 const getStaffInfo = async (req, res) => {
   try {
     const staff = await staffModel.findById(req.params.id);
@@ -408,6 +426,7 @@ module.exports = {
   changePassword,
   findStaff,
   SearchStaff,
+  getStaffHubs,
 };
 
 // const makeSearch = req.query

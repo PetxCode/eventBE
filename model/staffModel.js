@@ -43,15 +43,10 @@ const staffSchema = mongoose.Schema(
       ref: "companies",
     },
 
-    hub: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "hubs",
-    },
-
-    history: [
+    hub: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "reportHistories",
+        ref: "hubs",
       },
     ],
 
