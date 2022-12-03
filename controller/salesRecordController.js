@@ -89,7 +89,7 @@ const createSalesRecord = async (req, res) => {
       totalExpense,
       totalSales,
       profit: totalSales - totalExpense,
-      date: `${moment(dater).format("dddd")}, ${moment(dater).format(
+      date: `${moment(createdAt).format("dddd")}, ${moment(createdAt).format(
         "MMMM Do YYYY, h:mm:ss"
       )}`,
 

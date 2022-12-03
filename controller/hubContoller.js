@@ -1,8 +1,10 @@
 const companyModel = require("../model/company");
 const hubModel = require("../model/hubModel");
 const staffModel = require("../model/staffModel");
+const staffHubModel = require("../model/hubRecordHistory");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
+const moment = require("moment");
 const { assignedToken } = require("../util/email");
 
 const getHubs = async (req, res) => {
@@ -167,7 +169,16 @@ const assignHub = async (req, res) => {
         { new: true }
       );
 
-      staff.hub.push(new mongoose.Types.ObjectId(hub._id));
+      const hubHistory = await staffHubModel.create({
+        HubName: hub.name,
+        staffName: userName,
+        staffImage: staff.userImage,
+        date: `${moment(hub.updatedAt).format("dddd")}, ${moment(
+          hub.updatedAt
+        ).format("MMMM Do YYYY, h:mm:ss")}`,
+      });
+
+      staff.hub.push(new mongoose.Types.ObjectId(hubHistory._id));
       staff.save();
 
       assignedToken(hub, staff, company);

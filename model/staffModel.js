@@ -46,7 +46,7 @@ const staffSchema = mongoose.Schema(
     hub: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "hubs",
+        ref: "staffHubs",
       },
     ],
 
