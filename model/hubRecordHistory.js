@@ -18,6 +18,10 @@ const staffHubSchema = mongoose.Schema(
       type: String,
     },
 
+    token: {
+      type: String,
+    },
+
     staff: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "staffs",

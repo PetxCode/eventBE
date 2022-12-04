@@ -171,6 +171,7 @@ const assignHub = async (req, res) => {
 
       const hubHistory = await staffHubModel.create({
         HubName: hub.name,
+        token: hub.hubToken,
         staffName: userName,
         staffImage: staff.userImage,
         date: `${moment(hub.updatedAt).format("dddd")}, ${moment(
