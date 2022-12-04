@@ -13,6 +13,7 @@ const {
   findStaff,
   SearchStaff,
   getStaffHubs,
+  getStaffHubOne,
 } = require("../controller/staffController");
 const { uploader } = require("../util/multer");
 const router = express.Router();
@@ -24,6 +25,7 @@ router.route("/:id").get(getStaffInfo);
 router.route("/:id/gethistory").get(getStaffHistory);
 
 router.route("/:id/gethub").get(getStaffHubs);
+router.route("/:id/gethubone").get(getStaffHubOne);
 
 router.route("/:id/company").get(getStaffs);
 
