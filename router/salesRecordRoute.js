@@ -5,11 +5,14 @@ const {
   getSalesRecordInfo,
   getSalesRecords,
   getAllSalesRecords,
+  getStaffSalesRecords,
 } = require("../controller/salesRecordController");
 const router = express.Router();
 
 router.route("/:id/:staffID/create").post(createSalesRecord);
 router.route("/:id/:salesID").get(getSalesRecordInfo);
+
+router.route("/:id/saleshistory").patch(getStaffSalesRecords);
 
 router.route("/:id/record").patch(getAllSalesRecords);
 

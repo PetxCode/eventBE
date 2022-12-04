@@ -6,6 +6,12 @@ const reportHistoryModel = require("../model/reportHistoryModel");
 const mongoose = require("mongoose");
 const moment = require("moment");
 
+// import datetime
+// import pymongo
+// client = pymongo.MongoClient()
+// db = client.test_Db
+// server_time = db.command("serverStatus")['localTime']
+
 const getAllSalesRecords = async (req, res) => {
   try {
     // const hubData = await hubModel.findById(req.params.hubID);
@@ -19,6 +25,24 @@ const getAllSalesRecords = async (req, res) => {
     return res.status(200).json({
       message: `All sales record`,
       data: sales,
+    });
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
+const getStaffSalesRecords = async (req, res) => {
+  try {
+    const staff = await staffModel.findById(req.params.id).populate({
+      path: "salesRecord",
+      options: { sort: { createdAt: -1 } },
+    });
+
+    return res.status(200).json({
+      message: `These are your salesRecord profile`,
+      data: staff,
     });
   } catch (err) {
     return res.status(404).json({
@@ -187,4 +211,5 @@ module.exports = {
   getSalesRecordInfo,
   getSalesRecords,
   getAllSalesRecords,
+  getStaffSalesRecords,
 };
