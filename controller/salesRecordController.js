@@ -62,7 +62,7 @@ const getSalesRecordInfo = async (req, res) => {
 
 const createSalesRecord = async (req, res) => {
   try {
-    const { totalExpense, totalSales } = req.body;
+    const { totalExpense, totalSales, note, detail } = req.body;
 
     const user = await staffModel.findById(req.params.staffID);
 
@@ -73,29 +73,18 @@ const createSalesRecord = async (req, res) => {
 
     const dater = Date.now();
 
-    // await reportHistoryModel.create({
-    //   totalExpense,
-    //   totalSales,
-    //   profit: totalSales - totalExpense,
-    //   date: `${moment(dater).format("dddd")}, ${moment(dater).format(
-    //     "MMMM Do YYYY, h:mm:ss"
-    //   )}`,
-    //   submittedBy: user.userName,
-    //   // company: company.name,
-    // });
-
     const sales = await salesRecordModel.create({
       hubName: hub.name,
       totalExpense,
       totalSales,
       profit: totalSales - totalExpense,
-      date: `${moment(createdAt).format("dddd")}, ${moment(createdAt).format(
+      date: `${moment(dater).format("dddd")}, ${moment(dater).format(
         "MMMM Do YYYY, h:mm:ss"
       )}`,
-
       submittedBy: user.userName,
       image: user.userImage,
-      // company: company.name,
+      note,
+      detail,
     });
 
     hub.salesRecord.push(mongoose.Types.ObjectId(sales._id));

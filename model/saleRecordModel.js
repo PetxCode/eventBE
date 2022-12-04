@@ -22,6 +22,14 @@ const salesRecordSchema = mongoose.Schema(
       type: String,
     },
 
+    note: {
+      type: String,
+    },
+
+    detail: {
+      type: Array,
+    },
+
     image: {
       type: String,
     },
