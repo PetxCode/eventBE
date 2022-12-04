@@ -15,7 +15,7 @@ router.route("/:id/:hubID/assign").post(assignHub);
 
 router.route("/:id/hubstaff").get(getHubStaff);
 router.route("/:id/create").post(createHub);
-router.route("/:id").get(getHubInfo);
+router.route("/:id").patch(getHubInfo);
 router.route("/:id/hubSales").get(getHubSales);
 router.route("/:id/hubs").get(getHubs);
 router.route("/:id/:hubID").delete(deleteHub);

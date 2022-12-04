@@ -14,6 +14,10 @@ const staffHubSchema = mongoose.Schema(
       type: String,
     },
 
+    id: {
+      type: String,
+    },
+
     staffImage: {
       type: String,
     },
