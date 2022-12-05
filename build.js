@@ -55,150 +55,87 @@ outJSON = [
 
 let data = [
   {
-    _id: "638ce987fd56799d648aa082",
-    date: "Sunday, December 4th 2022, 6:40:07",
+    _id: "638e0bbdcabacd9c66026ed8",
+    date: "Monday, December 5th 2022, 3:18:21",
     hubName: "Idowu",
-    totalExpense: 3344,
-    totalSales: 44000,
+    totalExpense: 6500,
+    totalSales: 80000,
     submittedBy: "Blessed Uzorma",
     note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+    dated: "Monday, December 5th 2022",
     detail: [
       {
-        item: "Fuel",
-        cost: 3344,
+        item: "ffeer",
+        cost: 3500,
         status: "expense",
         id: 1,
       },
       {
-        item: "op",
-        cost: 44000,
-        status: "sales",
-        id: 2,
-      },
-    ],
-    image:
-      "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
-    profit: 40656,
-    createdAt: "2022-12-04T18:40:07.176Z",
-    updatedAt: "2022-12-04T18:40:07.176Z",
-    __v: 0,
-  },
-  {
-    _id: "638c4d51b7919c9e5400b881",
-    date: "Sunday, December 4th 2022, 7:33:37",
-    hubName: "Origie",
-    totalExpense: 27966,
-    totalSales: 103300,
-    submittedBy: "Blessed Uzorma",
-    note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
-    detail: [
-      {
-        item: "Feul",
-        cost: 300,
-        status: "sales",
-        id: 1,
-      },
-      {
-        item: "Feul for Gen",
+        item: "Fuel",
         cost: 3000,
         status: "expense",
         id: 2,
       },
       {
-        item: "pay",
-        cost: 2333,
-        status: "expense",
+        item: "rent",
+        cost: 50000,
+        status: "sales",
         id: 3,
       },
       {
-        item: "Salary",
-        cost: 22333,
-        status: "expense",
+        item: "car ride",
+        cost: 30000,
+        status: "sales",
         id: 4,
-      },
-      {
-        item: "million deal",
-        cost: 100000,
-        status: "sales",
-        id: 5,
-      },
-      {
-        item: "Pay",
-        cost: 300,
-        status: "expense",
-        id: 6,
-      },
-      {
-        item: "ffeer",
-        cost: 3000,
-        status: "sales",
-        id: 7,
       },
     ],
     image:
       "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
-    profit: 75334,
-    createdAt: "2022-12-04T07:33:37.047Z",
-    updatedAt: "2022-12-04T07:33:37.047Z",
+    profit: 73500,
+    createdAt: "2022-12-05T15:18:21.196Z",
+    updatedAt: "2022-12-05T15:18:21.196Z",
     __v: 0,
   },
   {
-    _id: "638c439ed3518fe91988c098",
-    date: "Sunday, December 4th 2022, 7:52:14",
-    hubName: "Wilmer",
-    totalExpense: 11600,
-    totalSales: 25500,
-    submittedBy: "Tunde",
-    note: "This is the sales report for the day!",
+    _id: "638e0b65cabacd9c66026eb2",
+    date: "Monday, December 5th 2022, 3:16:53",
+    hubName: "Idowu",
+    totalExpense: 43000,
+    totalSales: 94555,
+    submittedBy: "Blessed Uzorma",
+    note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+    dated: "Monday, December 5th 2022",
     detail: [
       {
-        item: "food",
-        cost: 67,
+        item: "Fuel",
+        cost: 3000,
+        status: "expense",
+        id: 1,
       },
       {
-        item: "food2",
-        cost: 617,
+        item: "rent",
+        cost: 50000,
+        status: "sales",
+        id: 2,
       },
       {
-        item: "food3",
-        cost: 670,
+        item: "car",
+        cost: 44555,
+        status: "sales",
+        id: 3,
+      },
+      {
+        item: "Pay",
+        cost: 40000,
+        status: "expense",
+        id: 4,
       },
     ],
     image:
-      "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
-    profit: 13900,
-    createdAt: "2022-12-04T06:52:14.593Z",
-    updatedAt: "2022-12-04T06:52:14.593Z",
-    __v: 0,
-  },
-  {
-    detail: [],
-    _id: "638a7c45b225eb17db0fa2b8",
-    date: "Friday, December 2nd 2022, 11:29:25",
-    hubName: "Wilmer",
-    totalExpense: 11600,
-    totalSales: 25500,
-    submittedBy: "Tunde",
-    image:
-      "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
-    profit: 13900,
-    createdAt: "2022-12-02T22:29:25.390Z",
-    updatedAt: "2022-12-02T22:29:25.390Z",
-    __v: 0,
-  },
-  {
-    detail: [],
-    _id: "638a7c18b225eb17db0fa2b0",
-    date: "Friday, December 2nd 2022, 11:28:40",
-    hubName: "Wilmer",
-    totalExpense: 1600,
-    totalSales: 2800,
-    submittedBy: "Tunde",
-    image:
-      "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
-    profit: 1200,
-    createdAt: "2022-12-02T22:28:40.044Z",
-    updatedAt: "2022-12-02T22:28:40.044Z",
+      "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+    profit: 51555,
+    createdAt: "2022-12-05T15:16:53.085Z",
+    updatedAt: "2022-12-05T15:16:53.085Z",
     __v: 0,
   },
 ];
@@ -209,96 +146,214 @@ var groupBy = function (xs, key) {
     return rv;
   }, {});
 };
-var groubedByTeam = groupBy(data, "date");
-console.log(groubedByTeam);
 
-let newData = {
-  "Sunday, December 4th 2022, 6:40:07": [
+let newData = [
+  {
+    _id: "638e0e67cabacd9c66026f41",
+    date: "Monday, December 5th 2022, 3:29:43",
+    hubName: "Idowu",
+    totalExpense: 7000,
+    totalSales: 101000,
+    submittedBy: "Blessed Uzorma",
+    note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+    dated: "Monday, December 5th 2022",
+    detail: [
+      {
+        item: "stater",
+        cost: 4000,
+        status: "expense",
+        id: 1,
+      },
+      {
+        item: "gamer",
+        cost: 3000,
+        status: "expense",
+        id: 2,
+      },
+      {
+        item: "shirt",
+        cost: 25000,
+        status: "sales",
+        id: 3,
+      },
+      {
+        item: "starting",
+        cost: 26000,
+        status: "sales",
+        id: 4,
+      },
+      {
+        item: "star",
+        cost: 50000,
+        status: "sales",
+        id: 5,
+      },
+    ],
+    image:
+      "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+    profit: 94000,
+    createdAt: "2022-12-05T15:29:43.448Z",
+    updatedAt: "2022-12-05T15:29:43.448Z",
+    __v: 0,
+  },
+  {
+    _id: "638e0bbdcabacd9c66026ed8",
+    date: "Monday, December 5th 2022, 3:18:21",
+    hubName: "Idowu",
+    totalExpense: 6500,
+    totalSales: 80000,
+    submittedBy: "Blessed Uzorma",
+    note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+    dated: "Monday, December 5th 2022",
+    detail: [
+      {
+        item: "ffeer",
+        cost: 3500,
+        status: "expense",
+        id: 1,
+      },
+      {
+        item: "Fuel",
+        cost: 3000,
+        status: "expense",
+        id: 2,
+      },
+      {
+        item: "rent",
+        cost: 50000,
+        status: "sales",
+        id: 3,
+      },
+      {
+        item: "car ride",
+        cost: 30000,
+        status: "sales",
+        id: 4,
+      },
+    ],
+    image:
+      "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+    profit: 73500,
+    createdAt: "2022-12-05T15:18:21.196Z",
+    updatedAt: "2022-12-05T15:18:21.196Z",
+    __v: 0,
+  },
+  {
+    _id: "638e0b65cabacd9c66026eb2",
+    date: "Monday, December 5th 2022, 3:16:53",
+    hubName: "Idowu",
+    totalExpense: 43000,
+    totalSales: 94555,
+    submittedBy: "Blessed Uzorma",
+    note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+    dated: "Monday, December 5th 2022",
+    detail: [
+      {
+        item: "Fuel",
+        cost: 3000,
+        status: "expense",
+        id: 1,
+      },
+      {
+        item: "rent",
+        cost: 50000,
+        status: "sales",
+        id: 2,
+      },
+      {
+        item: "car",
+        cost: 44555,
+        status: "sales",
+        id: 3,
+      },
+      {
+        item: "Pay",
+        cost: 40000,
+        status: "expense",
+        id: 4,
+      },
+    ],
+    image:
+      "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+    profit: 51555,
+    createdAt: "2022-12-05T15:16:53.085Z",
+    updatedAt: "2022-12-05T15:16:53.085Z",
+    __v: 0,
+  },
+];
+var groubedByTeam = groupBy(newData, "dated");
+
+let myData = {
+  "Monday, December 5th 2022": [
     {
-      _id: "638ce987fd56799d648aa082",
-      date: "Sunday, December 4th 2022, 6:40:07",
+      _id: "638e0e67cabacd9c66026f41",
+      date: "Monday, December 5th 2022, 3:29:43",
       hubName: "Idowu",
-      totalExpense: 3344,
-      totalSales: 44000,
+      totalExpense: 7000,
+      totalSales: 101000,
       submittedBy: "Blessed Uzorma",
       note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+      dated: "Monday, December 5th 2022",
       detail: [Array],
       image:
         "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
-      profit: 40656,
-      createdAt: "2022-12-04T18:40:07.176Z",
-      updatedAt: "2022-12-04T18:40:07.176Z",
+      profit: 94000,
+      createdAt: "2022-12-05T15:29:43.448Z",
+      updatedAt: "2022-12-05T15:29:43.448Z",
       __v: 0,
     },
-  ],
-  "Sunday, December 4th 2022, 7:33:37": [
     {
-      _id: "638c4d51b7919c9e5400b881",
-      date: "Sunday, December 4th 2022, 7:33:37",
-      hubName: "Origie",
-      totalExpense: 27966,
-      totalSales: 103300,
+      _id: "638e0bbdcabacd9c66026ed8",
+      date: "Monday, December 5th 2022, 3:18:21",
+      hubName: "Idowu",
+      totalExpense: 6500,
+      totalSales: 80000,
       submittedBy: "Blessed Uzorma",
       note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+      dated: "Monday, December 5th 2022",
       detail: [Array],
       image:
         "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
-      profit: 75334,
-      createdAt: "2022-12-04T07:33:37.047Z",
-      updatedAt: "2022-12-04T07:33:37.047Z",
+      profit: 73500,
+      createdAt: "2022-12-05T15:18:21.196Z",
+      updatedAt: "2022-12-05T15:18:21.196Z",
       __v: 0,
     },
-  ],
-  "Sunday, December 4th 2022, 7:52:14": [
     {
-      _id: "638c439ed3518fe91988c098",
-      date: "Sunday, December 4th 2022, 7:52:14",
-      hubName: "Wilmer",
-      totalExpense: 11600,
-      totalSales: 25500,
-      submittedBy: "Tunde",
-      note: "This is the sales report for the day!",
+      _id: "638e0b65cabacd9c66026eb2",
+      date: "Monday, December 5th 2022, 3:16:53",
+      hubName: "Idowu",
+      totalExpense: 43000,
+      totalSales: 94555,
+      submittedBy: "Blessed Uzorma",
+      note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+      dated: "Monday, December 5th 2022",
       detail: [Array],
       image:
-        "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
-      profit: 13900,
-      createdAt: "2022-12-04T06:52:14.593Z",
-      updatedAt: "2022-12-04T06:52:14.593Z",
-      __v: 0,
-    },
-  ],
-  "Friday, December 2nd 2022, 11:29:25": [
-    {
-      detail: [],
-      _id: "638a7c45b225eb17db0fa2b8",
-      date: "Friday, December 2nd 2022, 11:29:25",
-      hubName: "Wilmer",
-      totalExpense: 11600,
-      totalSales: 25500,
-      submittedBy: "Tunde",
-      image:
-        "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
-      profit: 13900,
-      createdAt: "2022-12-02T22:29:25.390Z",
-      updatedAt: "2022-12-02T22:29:25.390Z",
-      __v: 0,
-    },
-  ],
-  "Friday, December 2nd 2022, 11:28:40": [
-    {
-      detail: [],
-      _id: "638a7c18b225eb17db0fa2b0",
-      date: "Friday, December 2nd 2022, 11:28:40",
-      hubName: "Wilmer",
-      totalExpense: 1600,
-      totalSales: 2800,
-      submittedBy: "Tunde",
-      image:
-        "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
-      profit: 1200,
-      createdAt: "2022-12-02T22:28:40.044Z",
-      updatedAt: "2022-12-02T22:28:40.044Z",
+        "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+      profit: 51555,
+      createdAt: "2022-12-05T15:16:53.085Z",
+      updatedAt: "2022-12-05T15:16:53.085Z",
       __v: 0,
     },
   ],
 };
+
+console.log("start...");
+console.log("");
+console.log("");
+console.log("");
+
+let res = Object.values(groubedByTeam).map((el) => {
+  return el.map((props) => {
+    return props;
+  });
+});
+
+console.log(
+  res.flat().map((el) => {
+    return el.profit;
+  })
+);
+
+console.log(Object.values(groubedByTeam).flat());
