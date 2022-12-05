@@ -63,19 +63,20 @@ const getHubSales = async (req, res) => {
 
 const getHubInfo = async (req, res) => {
   try {
-    const { token } = req.body;
+    // const { token } = req.body;
 
     const hub = await hubModel.findById(req.params.id);
-    if (hub.hubToken === token) {
-      return res.status(200).json({
-        message: `this is ${hub.name} profile`,
-        data: hub,
-      });
-    } else {
-      return res.status(404).json({
-        message: "Token is not correct",
-      });
-    }
+    // if (hub.hubToken === token) {
+    return res.status(200).json({
+      message: `this is ${hub.name} profile`,
+      data: hub,
+    });
+
+    // else {
+    //   return res.status(404).json({
+    //     message: "Token is not correct",
+    //   });
+    // }
   } catch (err) {
     return res.status(404).json({
       message: err.message,
