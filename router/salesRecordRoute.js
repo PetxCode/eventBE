@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 router.route("/:id/:staffID/create").post(createSalesRecord);
-router.route("/:id/:salesID").get(getSalesRecordInfo);
+router.route("/:id/sales").patch(getSalesRecordInfo);
 
 router.route("/:id/saleshistory").patch(getStaffSalesRecords);
 

@@ -66,6 +66,7 @@ const getHubInfo = async (req, res) => {
     // const { token } = req.body;
 
     const hub = await hubModel.findById(req.params.id);
+    // .populate({ path: "salesRecord",});
     // if (hub.hubToken === token) {
     return res.status(200).json({
       message: `this is ${hub.name} profile`,

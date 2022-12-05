@@ -71,7 +71,10 @@ const getSalesRecords = async (req, res) => {
 
 const getSalesRecordInfo = async (req, res) => {
   try {
-    const sales = await salesRecordModel.findById(req.params.salesID);
+    const sales = await salesRecordModel.findById(req.params.id);
+    // .populate({
+
+    // })
 
     return res.status(200).json({
       message: `this is the sales Record`,
