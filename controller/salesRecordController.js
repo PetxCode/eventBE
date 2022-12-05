@@ -108,6 +108,9 @@ const createSalesRecord = async (req, res) => {
       date: `${moment(dater).format("dddd")}, ${moment(dater).format(
         "MMMM Do YYYY, h:mm:ss"
       )}`,
+      dated: `${moment(dater).format("dddd")}, ${moment(dater).format(
+        "MMMM Do YYYY"
+      )}`,
       submittedBy: user.userName,
       image: user.userImage,
       note,
