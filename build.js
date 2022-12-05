@@ -211,3 +211,94 @@ var groupBy = function (xs, key) {
 };
 var groubedByTeam = groupBy(data, "date");
 console.log(groubedByTeam);
+
+let newData = {
+  "Sunday, December 4th 2022, 6:40:07": [
+    {
+      _id: "638ce987fd56799d648aa082",
+      date: "Sunday, December 4th 2022, 6:40:07",
+      hubName: "Idowu",
+      totalExpense: 3344,
+      totalSales: 44000,
+      submittedBy: "Blessed Uzorma",
+      note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+      detail: [Array],
+      image:
+        "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+      profit: 40656,
+      createdAt: "2022-12-04T18:40:07.176Z",
+      updatedAt: "2022-12-04T18:40:07.176Z",
+      __v: 0,
+    },
+  ],
+  "Sunday, December 4th 2022, 7:33:37": [
+    {
+      _id: "638c4d51b7919c9e5400b881",
+      date: "Sunday, December 4th 2022, 7:33:37",
+      hubName: "Origie",
+      totalExpense: 27966,
+      totalSales: 103300,
+      submittedBy: "Blessed Uzorma",
+      note: "The day went all nice and well... Wwe really Thank God for today's business sales and outcome! ",
+      detail: [Array],
+      image:
+        "https://res.cloudinary.com/ditsu2meo/image/upload/v1670048529/t1eru2kcxt7jhv8tyjh1.jpg",
+      profit: 75334,
+      createdAt: "2022-12-04T07:33:37.047Z",
+      updatedAt: "2022-12-04T07:33:37.047Z",
+      __v: 0,
+    },
+  ],
+  "Sunday, December 4th 2022, 7:52:14": [
+    {
+      _id: "638c439ed3518fe91988c098",
+      date: "Sunday, December 4th 2022, 7:52:14",
+      hubName: "Wilmer",
+      totalExpense: 11600,
+      totalSales: 25500,
+      submittedBy: "Tunde",
+      note: "This is the sales report for the day!",
+      detail: [Array],
+      image:
+        "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
+      profit: 13900,
+      createdAt: "2022-12-04T06:52:14.593Z",
+      updatedAt: "2022-12-04T06:52:14.593Z",
+      __v: 0,
+    },
+  ],
+  "Friday, December 2nd 2022, 11:29:25": [
+    {
+      detail: [],
+      _id: "638a7c45b225eb17db0fa2b8",
+      date: "Friday, December 2nd 2022, 11:29:25",
+      hubName: "Wilmer",
+      totalExpense: 11600,
+      totalSales: 25500,
+      submittedBy: "Tunde",
+      image:
+        "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
+      profit: 13900,
+      createdAt: "2022-12-02T22:29:25.390Z",
+      updatedAt: "2022-12-02T22:29:25.390Z",
+      __v: 0,
+    },
+  ],
+  "Friday, December 2nd 2022, 11:28:40": [
+    {
+      detail: [],
+      _id: "638a7c18b225eb17db0fa2b0",
+      date: "Friday, December 2nd 2022, 11:28:40",
+      hubName: "Wilmer",
+      totalExpense: 1600,
+      totalSales: 2800,
+      submittedBy: "Tunde",
+      image:
+        "https://res.cloudinary.com/ditsu2meo/image/upload/v1669583798/ovcauchgqiiffatq5727.jpg",
+      profit: 1200,
+      createdAt: "2022-12-02T22:28:40.044Z",
+      updatedAt: "2022-12-02T22:28:40.044Z",
+      __v: 0,
+    },
+  ],
+};
