@@ -45,7 +45,7 @@ const verifiedCompanyMail = async (company) => {
       realToken: company.verifiedToken,
       code: company.companyToken,
       logo: company.logo,
-      url: "http://localhost:3000/api/company",
+      url: "https://expense-fe.vercel.app/api/company",
     });
 
     const mailOptions = {
@@ -93,7 +93,7 @@ const verifiedTokenMail = async (company) => {
       id: company?._id,
       code: company.companyToken,
       logo: company.logo,
-      url: "http://localhost:3000/api/company",
+      url: "https://expense-fe.vercel.app/api/company",
     });
 
     const mailOptions = {
@@ -141,7 +141,7 @@ const verifiedStaffMail = async (user, company) => {
       realToken: company.verifiedToken,
       code: company.companyToken,
       logo: company.logo,
-      url: "http://localhost:3000/api/staff",
+      url: "https://expense-fe.vercel.app/api/staff",
     });
 
     const mailOptions = {
@@ -189,7 +189,7 @@ const verifiedStaffMailTOAdmin = async (user, company) => {
       realToken: user.verifiedToken,
       code: user.staffToken,
       logo: company.logo,
-      url: "http://localhost:3000/api/staff",
+      url: "https://expense-fe.vercel.app/api/staff",
     });
 
     const mailOptions = {
@@ -237,7 +237,7 @@ const verifiedStaffFromAdmin = async (user, company) => {
       realToken: user.verifiedToken,
       code: user.staffToken,
       logo: company.logo,
-      url: "http://localhost:3000/api/staff",
+      url: "https://expense-fe.vercel.app/api/staff",
     });
 
     const mailOptions = {
@@ -281,7 +281,7 @@ const resetMyPassword = async (newUser, company) => {
       name: newUser.userName,
       id: newUser?._id,
       myToken: newUser.verifiedToken,
-      url: "http://localhost:3000/api/staff",
+      url: "https://expense-fe.vercel.app/api/staff",
       logo: company.logo,
     });
 
@@ -326,7 +326,7 @@ const resetCompanyMyPassword = async (newUser) => {
       name: newUser.nameame,
       id: newUser?._id,
       myToken: newUser.verifiedToken,
-      url: "http://localhost:3000/api/company",
+      url: "https://expense-fe.vercel.app/api/company",
       logo: newUser.logo,
     });
 
@@ -363,7 +363,7 @@ const assignedToken = async (hub, staff, company) => {
       name: staff.userName,
       id: staff?._id,
       code: hub.hubToken,
-      url: "http://localhost:3000/api/hub",
+      url: "https://expense-fe.vercel.app/api/hub",
       logo: company.logo,
       center: hub.name,
     });
