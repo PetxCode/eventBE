@@ -30,6 +30,10 @@ const salesRecordSchema = mongoose.Schema(
       type: String,
     },
 
+    month: {
+      type: String,
+    },
+
     detail: {
       type: Array,
     },
